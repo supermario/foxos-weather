@@ -1,0 +1,47 @@
+@font-face
+  font-family: 'Climacons-Font'
+  src: url('fonts/climacons-webfont.woff') format('woff')
+  font-weight: normal
+  font-style: normal
+
+#weather
+  .flex
+    display: flex
+    align-items: center
+    text-align: center
+
+  h1
+    flex-grow: 1
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-size: 100px
+
+  h2
+    flex-grow: 1
+    font-size: 150px
+    line-height: 100px
+    font-family: "Climacons-Font"
+
+    span
+      font-size: 80px
+
+
+// background colors
+$background-colors: #52a5ff #48efff #4dff5a #ffe33d #ff9d37 #ff5131 #ff2c59
+
+=klimato-background($color, $percentage: 25%)
+  background-color: $color
+
+  .updated-at
+    color: lighten($color, $percentage)
+
+@for $index from 0 through 6
+  .klimato-temperature-#{$index}
+    +klimato-background(nth($background-colors, $index + 1))
+
+// climacons
+$climacons: "\e037" "\e009" "\e009" "\e025" "\e025" "\e00f" "\e015" " \e00f" "\e00c" "\e00c" "\e00f" "\e006" "\e006" "\e015" "\e018" "\e018" "\e018" "\e012" "\e00f" "\e01e" "\e01b" "\e01e" "\e01e" "\e01e" "\e021" "\e01b" "\e000" "\e002" "\e001" "\e002" "\e001" "\e02d" "\e028" "\e001" "\e002" "\e012" "\e028" "\e025" "\e025" "\e025" "\e006" "\e036" "\e036" "\e036" "\e000" "\e025" "\e036" "\e025"
+
+@for $index from 0 through 47
+  .klimato-#{$index}:before
+    content: nth($climacons, $index + 1)
+
