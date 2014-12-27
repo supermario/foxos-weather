@@ -4,21 +4,30 @@
   src: url("fonts/climacons-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
-#weather .flex {
-  display: flex;
-  align-items: center;
-  text-align: center; }
-#weather h1 {
-  flex-grow: 1;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 100px; }
-#weather h2 {
-  flex-grow: 1;
-  font-size: 150px;
-  line-height: 100px;
-  font-family: "Climacons-Font"; }
-  #weather h2 span {
-    font-size: 80px; }
+html, body {
+  height: 100%; }
+
+#weather {
+  height: 100%; }
+  #weather .flex {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; }
+  #weather h1 {
+    flex-grow: 1;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 100px;
+    margin: 0; }
+  #weather h2 {
+    flex-grow: 1;
+    font-size: 150px;
+    line-height: 100px;
+    font-family: "Climacons-Font";
+    margin: 0; }
+    #weather h2 span {
+      font-size: 80px; }
 
 .klimato-temperature-0 {
   background-color: #52a5ff; }

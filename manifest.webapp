@@ -20,5 +20,6 @@
     "network-tcp": {
       "description": "Loading weather data."
     }
-  }
+  },
+  "fullscreen": "true"
 }

@@ -1,4 +1,6 @@
 
+window.screen.mozLockOrientation && window.screen.mozLockOrientation("landscape");
+
 function getJSON(url, callback) {
   var xhr = new XMLHttpRequest({mozSystem: true});
   xhr.open('GET', url, true);
@@ -19,15 +21,15 @@ var Weather = React.createClass({
   render: function() {
     return (
       <div className='flex'>
-        <h1 className='temp'>{this.state.current}/{this.state.high}</h1>
+        <h1 className='temp'>{this.state.current}<br/>{this.state.high}</h1>
         <h2 className={this.state.weather_class}><br/><span>{this.state.text}</span></h2>
-
       </div>
     );
   },
   getInitialState: function() {
     return {
       high: '..',
+      current: '..',
       weather_class: '..'
     };
   },
