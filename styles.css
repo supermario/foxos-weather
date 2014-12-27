@@ -5,7 +5,8 @@
   font-weight: normal;
   font-style: normal; }
 html, body {
-  height: 100%; }
+  height: 100%;
+  margin: 0; }
 
 #weather {
   height: 100%; }
@@ -16,18 +17,19 @@ html, body {
     justify-content: center;
     text-align: center; }
   #weather h1 {
-    flex-grow: 1;
+    flex: 1 0 0px;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 100px;
     margin: 0; }
   #weather h2 {
-    flex-grow: 1;
+    flex: 1 0 0px;
     font-size: 150px;
     line-height: 100px;
     font-family: "Climacons-Font";
     margin: 0; }
     #weather h2 span {
-      font-size: 80px; }
+      font-size: 80px;
+      line-height: 70px; }
 
 .klimato-temperature-0 {
   background-color: #52a5ff; }
