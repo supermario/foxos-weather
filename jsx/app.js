@@ -57,7 +57,7 @@ format = 'c';
 woeid  = 1103816;
 
 source = 'http://query.yahooapis.com/v1/public/yql?q=';
-source += "select * from weather.forecast WHERE woeid=1103816 and u='c'&format=json";
+source += "select * from weather.forecast WHERE woeid=22720989 and u='c'&format=json";
 
 React.render(
   <Weather source={source} />,
