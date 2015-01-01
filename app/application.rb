@@ -1,7 +1,8 @@
 require 'opal'
-require 'opal-jquery'
 require 'native'
-require 'json'
+require 'browser'
+require 'browser/http'
+require 'react'
 
 @React = Native(`React`)
 
@@ -27,24 +28,22 @@ params = {
     }.to_n
   },
   componentDidMount: -> {
-    `that = this`
-    HTTP.get(`this.props.source`) do |response|
-
-      results = response.json['query']['results']['channel']['item']
-      forecast = results['forecast'][0]
-      current_temp = results['condition']['temp'];
-
-      state = {
-        weather_class: "klimato-" + forecast['code'],
-        date: forecast['date'],
-        day: forecast['day'],
-        current: current_temp,
-        high: forecast['high'],
-        text: forecast['text'],
-      }
-
-      `that.setState(#{state.to_n})`
+    response = Browser::HTTP.get! `this.props.source` do
+      @headers = []
     end
+    results = response.json['query']['results']['channel']['item']
+    forecast = results['forecast'][0]
+    current_temp = results['condition']['temp'];
+
+    state = {
+      weather_class: "klimato-" + forecast['code'],
+      date: forecast['date'],
+      day: forecast['day'],
+      current: current_temp,
+      high: forecast['high'],
+      text: forecast['text'],
+    }
+    `this.setState(#{state.to_n})`
   }
 }
 
@@ -54,5 +53,5 @@ source = "http://query.yahooapis.com/v1/public/yql?q=select * from weather.forec
 
 @React.render(
   @React.createElement(react_class, {source: source}),
-  Element['#weather'].get(0)
+  $document['weather']
 )

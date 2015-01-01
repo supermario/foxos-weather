@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'opal'
-gem 'opal-jquery'
+gem "opal", git: "https://github.com/opal/opal.git"
+gem "opal-browser", git: "https://github.com/opal/opal-browser.git"
 
-# Development
-gem 'guard'
-gem 'guard-rake'
+gem 'sass'
