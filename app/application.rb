@@ -20,17 +20,30 @@ class React
 end
 
 class ReactClassParams
+  def this
+    self
+  end
+  def state
+    self
+  end
+  def current
+    `#{@this}.state.current`
+  end
   def params
     {
-      render: -> { render },
-      getInitialState: -> { getInitialState }
+      render: -> { route(:render, `this`) },
+      getInitialState: -> { route(:getInitialState, `this`) }
     }
+  end
+  def route(method, scope)
+    @this = scope
+    send(method)
   end
 end
 
 class TestDiv < ReactClassParams
   def render
-    React.createElement("div", {}, "test")
+    React.createElement("div", {}, this.state.current)
   end
   def getInitialState
     {
