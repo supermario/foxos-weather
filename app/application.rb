@@ -17,7 +17,7 @@ class TestDiv < ReactClass
   end
 end
 
-react_class = React.createClass(TestDiv.new.params)
+react_class = React.createClass(TestDiv.new)
 
 React.render(
   React.createElement(react_class),
