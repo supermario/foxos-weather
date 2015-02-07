@@ -1,25 +1,17 @@
 require 'opal'
-require 'native'
-require 'browser'
-require 'browser/http'
 require 'react'
+require 'browser'
 
 class TestDiv < ReactClass
   def render
-    React.createElement("div", {}, this.state.current)
+    React.createElement("div", {}, this.state.text)
   end
   def getInitialState
-    {
-      high: 'h',
-      current: 'c',
-      weather_class: '..'
-    }
+    { text: 'Hello Opal!' }
   end
 end
 
-react_class = React.createClass(TestDiv.new)
-
 React.render(
-  React.createElement(react_class),
-  $document['weather']
+  React.createElement(TestDiv.new),
+  $document['test']
 )

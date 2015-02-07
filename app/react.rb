@@ -1,3 +1,4 @@
+require 'native'
 require 'react.js'
 
 class React
@@ -5,6 +6,7 @@ class React
     Native(`React`)
   end
   def self.createElement(elem, options, *contents)
+    elem = createClass(elem) if elem.is_a? ReactClass
     react.createElement(elem, options, *contents).to_n
   end
   def self.createClass(params)
