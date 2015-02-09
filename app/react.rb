@@ -26,8 +26,9 @@ class ReactClass
   end
   def params
     {
-      render: -> { route(:render, `this`) },
-      getInitialState: -> { route(:getInitialState, `this`).to_n }
+      render:            -> { route(:render, `this`) },
+      getInitialState:   -> { route(:getInitialState, `this`).to_n },
+      componentDidMount: -> { route(:componentDidMount, `this`) }
     }
   end
   def route(method, scope)

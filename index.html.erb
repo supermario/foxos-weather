@@ -6,31 +6,7 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div id="test"></div>
+    <div id="weather"></div>
     <%= javascript_include_tag 'application' %>
-
-    <script src="//cdn.opalrb.org/opal/current/opal-parser.js"></script>
-    <script>
-
-ruby = function () {/*
-  class TestDiv < ReactClass
-    def render
-      React.createElement("div", {}, this.state.text)
-    end
-    def getInitialState
-      { text: 'Hello Opal!' }
-    end
-  end
-
-  React.render(
-    React.createElement(TestDiv.new),
-    $document['test']
-  )
-*/}
-Opal.compile(
-  ruby.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1]
-);
-
-</script>
   </body>
 </html>
