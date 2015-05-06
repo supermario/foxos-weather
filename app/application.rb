@@ -11,9 +11,7 @@ class Weather < ReactClass
         this.state.current, React.createElement('br', {}), this.state.high
       ),
       React.createElement(
-        'h2', {className: this.state.weather_class},
-        React.createElement('br', {}),
-        React.createElement('span', {}, this.state.text)
+        'h2', {className: this.state.weather_class}
       )
     )
   end
