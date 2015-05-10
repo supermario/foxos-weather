@@ -23,6 +23,9 @@ class ReactClass
   def this
     @this
   end
+  def props
+    @this.props
+  end
   def params
     {
       render:            -> { route(:render, `this`) },

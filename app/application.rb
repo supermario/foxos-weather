@@ -23,10 +23,18 @@ class Weather < ReactClass
     }
   end
   def componentDidMount
-    Browser::HTTP.get(this.props.source) do |s|
+    loadWeather
+    every props.poll_interval, -> { loadWeather }
+  end
+  def every(interval, proc)
+    Native(`window`).setInterval(proc, interval)
+  end
+  def loadWeather
+    Browser::HTTP.get(props.source) do |s|
       s.headers.clear
       s.on(:success) { |res| handleJSON(res) }
     end
+    puts "nice"
   end
   def handleJSON(res)
     results      = res.json['query']['results']['channel']['item']
@@ -49,6 +57,6 @@ end
 source = "http://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=22720989 and u='c'&format=json"
 
 React.render(
-  React.createElement(Weather.new, {source: source}),
+  React.createElement(Weather.new, {source: source, poll_interval: 1000 * 60 * 10}),
   $document['weather']
 )
