@@ -1,7 +1,7 @@
-# require 'opal'
 require 'react'
 require 'browser'
 require 'browser/http'
+require 'browser/interval'
 
 class Weather < ReactClass
   def render
@@ -9,10 +9,10 @@ class Weather < ReactClass
       'div', { className: 'flex' },
       React.create_element(
         'h1', { className: 'temp' },
-        this.state.current, React.create_element('br', {}), this.state.high
+        state.current, React.create_element('br', {}), state.high
       ),
       React.create_element(
-        'h2', className: this.state.weather_class
+        'h2', className: state.weather_class
       )
     )
   end
@@ -27,11 +27,7 @@ class Weather < ReactClass
 
   def component_did_mount
     load_weather
-    every props.poll_interval, -> { load_weather }
-  end
-
-  def every(interval, proc)
-    Native(`window`).setInterval(proc, interval)
+    every(props.poll_interval) { load_weather }
   end
 
   def load_weather
@@ -65,7 +61,7 @@ source = "http://query.yahooapis.com/v1/public/yql?q=select * from weather.forec
 React.render(
   React.create_element(
     Weather.new,
-    source: source, poll_interval: 1000 * 60 * 10
+    source: source, poll_interval: 60 * 10
   ),
   $document['weather']
 )
