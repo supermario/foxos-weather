@@ -1,5 +1,4 @@
 require 'native'
-require 'react.js'
 
 class React
   def self.react

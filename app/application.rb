@@ -1,4 +1,4 @@
-require 'opal'
+# require 'opal'
 require 'react'
 require 'browser'
 require 'browser/http'
