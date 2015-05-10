@@ -37,7 +37,6 @@ class Weather < ReactClass
       s.headers.clear
       s.on(:success) { |res| handle_json(res) }
     end
-    puts 'nice'
   end
 
   def handle_json(res)
