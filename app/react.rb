@@ -4,14 +4,12 @@ class React
   def self.react
     Native(`React`)
   end
-  def self.createElement(elem, options, *contents)
-    elem = createClass(elem) if elem.is_a? ReactClass
+  def self.create_element(elem, options, *contents)
+    elem = create_class(elem) if elem.is_a? ReactClass
     react.createElement(elem, options, *contents).to_n
   end
-  def self.createClass(params)
-    if params.is_a? ReactClass
-      params = params.params
-    end
+  def self.create_class(params)
+    params = params.params if params.is_a? ReactClass
     react.createClass(params)
   end
   def self.render(element, target)
@@ -20,19 +18,20 @@ class React
 end
 
 class ReactClass
-  def this
-    @this
-  end
+  attr_reader :this
+
   def props
     @this.props
   end
+
   def params
     {
       render:            -> { route(:render, `this`) },
-      getInitialState:   -> { route(:getInitialState, `this`).to_n },
-      componentDidMount: -> { route(:componentDidMount, `this`) }
+      getInitialState:   -> { route(:initial_state, `this`).to_n },
+      componentDidMount: -> { route(:component_did_mount, `this`) }
     }
   end
+
   def route(method, scope)
     @this = Native(scope)
     send(method)
