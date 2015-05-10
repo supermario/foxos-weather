@@ -2,6 +2,17 @@ require 'react'
 require 'browser'
 require 'browser/http'
 
+class Speech
+  def self.speak(text)
+    w = Native(`window`)
+    msg = Native(`new SpeechSynthesisUtterance()`)
+    msg.voice = Native(`window.speechSynthesis.getVoices[3]`)
+    msg.text = text
+    msg.rate = 1
+    w.speechSynthesis.speak(msg);
+  end
+end
+
 class Weather < ReactClass
   def render
     React.create_element(
@@ -52,6 +63,10 @@ class Weather < ReactClass
       high:          forecast['high'],
       text:          forecast['text']
     }
+
+    Speech.speak("Weather is currently #{current_temp} degrees.")
+    Speech.speak("Today's top is #{forecast['high']} degrees.")
+    Speech.speak("The forecast is #{forecast['text']}")
 
     set_state(state)
   end
