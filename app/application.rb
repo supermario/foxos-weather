@@ -1,7 +1,6 @@
 require 'react'
 require 'browser'
 require 'browser/http'
-require 'browser/interval'
 
 class Weather < ReactClass
   def render
@@ -27,7 +26,10 @@ class Weather < ReactClass
 
   def component_did_mount
     load_weather
-    every(props.poll_interval) { load_weather }
+
+    [:click, :touch].each do |event|
+      $window.on(event) { load_weather }
+    end
   end
 
   def load_weather
@@ -52,7 +54,7 @@ class Weather < ReactClass
       text:          forecast['text']
     }
 
-    this.setState(state)
+    set_state(state)
   end
 end
 

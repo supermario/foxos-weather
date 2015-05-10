@@ -21,7 +21,15 @@ class ReactClass
   attr_reader :this
 
   def props
-    @this.props
+    this.props
+  end
+
+  def state
+    this.state
+  end
+
+  def set_state(state)
+    this.setState(state)
   end
 
   def params
