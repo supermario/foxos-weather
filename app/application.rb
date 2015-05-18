@@ -64,11 +64,9 @@ class Weather < ReactClass
       text:          forecast['text']
     }
 
-    Speech.speak("Weather is currently #{current_temp} degrees.")
-    Speech.speak("Today's top is #{forecast['high']} degrees.")
-    Speech.speak("The forecast is #{forecast['text']}")
-
     set_state(state)
+
+    Speech.speak("Todays forecast is #{forecast['text']}")
   end
 end
 
