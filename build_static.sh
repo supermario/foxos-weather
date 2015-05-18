@@ -16,3 +16,4 @@ bundle exec thin stop
 
 cp -rp fonts static
 cp -rp icons static
+cp manifest.webapp static
